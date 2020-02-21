@@ -30,7 +30,6 @@ export class AccountFormComponent implements OnInit {
       } else {
         result = await this.accountsService.updateAccount(this.editedAccount, payloadToSend);
       }
-      console.log('result', result);
       if (result.success) {
         await this.router.navigate(['/accounts']);
       }
@@ -66,7 +65,7 @@ export class AccountFormComponent implements OnInit {
     this.accountForm = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.minLength(4)]),
       initialBalance: new FormControl(0, Validators.required),
-      initialBalanceDate: new FormControl('', [Validators.required]),
+      initialBalanceDate: new FormControl(new Date().toISOString().split('T')[0], [Validators.required]),
     });
   }
 

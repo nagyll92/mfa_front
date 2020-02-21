@@ -1,0 +1,5 @@
+<div [@showBackdrop]="isChildVisible? 'visible': 'hidden'" class="ease-in-backdrop"></div>
+<!---->
+<div [@openChild]="isChildVisible? 'visible': 'hidden'" class="side-child-content" >
+  <router-outlet></router-outlet>
+</div>

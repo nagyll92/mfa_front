@@ -15,12 +15,20 @@ import { HttpClientModule } from '@angular/common/http';
 import { AccountFormComponent } from './accounts/account-form/account-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ConfirmationDialogComponent } from './components/shared/confirmation-dialog/confirmation-dialog.component';
+import { TransferComponent } from './accounts/transfer/transfer.component';
+import { SideChildComponent } from './components/shared/side-child/side-child.component';
 
 const appRoutes: Routes = [
   { path: '', component: DashboardComponent },
-  { path: 'accounts', component: AccountsComponent },
-  { path: 'accounts/new', component: AccountFormComponent },
-  { path: 'accounts/:accountName', component: AccountFormComponent },
+  {
+    path: 'accounts', component: AccountsComponent,  children: [
+      { path: 'new', component: AccountFormComponent },
+      { path: 'transfer', component: TransferComponent },
+      { path: 'account/:accountName', component: AccountFormComponent},
+    ],
+  },
+  /*{ path: 'accounts/new', component: AccountsComponent },
+  { path: 'accounts/:accountName', component: AccountsComponent },*/
   { path: 'categories', component: CategoriesComponent },
 ];
 
@@ -33,6 +41,8 @@ const appRoutes: Routes = [
     DashboardComponent,
     AccountFormComponent,
     ConfirmationDialogComponent,
+    TransferComponent,
+    SideChildComponent,
   ],
   imports: [
     BrowserModule,

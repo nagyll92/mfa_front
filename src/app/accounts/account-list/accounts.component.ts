@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AccountsService } from '../accounts.service';
 import { ConfirmationDialogComponent } from '../../components/shared/confirmation-dialog/confirmation-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-accounts',
@@ -11,12 +12,16 @@ import { MatDialog } from '@angular/material/dialog';
 export class AccountsComponent implements OnInit {
   accounts;
   displayedColumns: string[] = ['name', 'balance', 'actions'];
+  isFormVisible = false;
 
-  constructor(public dialog: MatDialog, private accountsService: AccountsService) {
+  constructor(public dialog: MatDialog, private accountsService: AccountsService, private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
-    this.accounts = this.accountsService.getAccounts();
+    this.route.url.subscribe((routDetails) => {
+      this.isFormVisible = this.route.children.length === 1;
+      this.accounts = this.accountsService.getAccounts();
+    });
   }
 
   openDialog(account) {

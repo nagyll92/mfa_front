@@ -1,0 +1,68 @@
+<h1>Transfer</h1>
+<form [formGroup]="transferForm" (ngSubmit)="onSubmit()">
+
+  <mat-form-field>
+    <mat-label>From</mat-label>
+    <mat-select formControlName="from">
+      <mat-option *ngFor="let account of accountList" [value]="account.name">
+        {{account.name}}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="transferForm.get('from').hasError('required')">
+      The source account is <strong>required</strong>
+    </mat-error>
+    <mat-error *ngIf="transferForm.get('from').hasError('notEqualValue')">
+      The <strong>source</strong> account must differ from the <strong>target</strong> account
+    </mat-error>
+  </mat-form-field>
+  <br>
+  <br>
+
+  <mat-form-field>
+    <mat-label>To</mat-label>
+    <mat-select formControlName="to">
+      <mat-option *ngFor="let account of accountList" [value]="account.name">
+        {{account.name}}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="transferForm.get('to').hasError('required')">
+      The target account is <strong>required</strong>
+    </mat-error>
+    <mat-error *ngIf="transferForm.get('from').hasError('notEqualValue')">
+      The <strong>target</strong> account must differ from the <strong>source</strong> account
+    </mat-error>
+  </mat-form-field>
+  <br>
+  <br>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Initial Balance</mat-label>
+    <input matInput placeholder="Name" type="number" step="0.01" formControlName="amount" autocomplete="off">
+    <mat-error *ngIf="transferForm.get('amount').hasError('required')">
+      The amount is <strong>required</strong>
+    </mat-error>
+
+  </mat-form-field>
+
+  <br>
+  <br>
+  <mat-form-field class="example-full-width">
+    <mat-label>Date</mat-label>
+    <input matInput placeholder="Date" type="date" formControlName="date" autocomplete="off">
+    <mat-error *ngIf="transferForm.get('date').hasError('required')">
+      The date is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <br>
+  <br>
+  <mat-form-field class="example-full-width">
+    <mat-label>Note</mat-label>
+    <input matInput placeholder="Note" type="text" formControlName="description" autocomplete="off">
+  </mat-form-field>
+
+  <br>
+  <br>
+  <button mat-raised-button color="primary" class="button" type="submit">Save</button>
+  <a mat-raised-button color="warn" class="button" routerLink="/accounts">Cancel</a>
+</form>

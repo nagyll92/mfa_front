@@ -16,6 +16,12 @@ export class AccountsService {
   constructor(private http: HttpClient) {
   }
 
+  public transferAmount(targetAccount, transaction) {
+    return this.http.put(this.basePath + '/' + targetAccount + '/transfer', transaction).pipe(map((response: CustomHttpResponse) => {
+      return response;
+    })).toPromise();
+  }
+
   public getAccounts() {
     return this.http.get(this.basePath).pipe(map((response: CustomHttpResponse) => {
       if (response.success) {
