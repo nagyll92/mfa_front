@@ -7,15 +7,20 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { LayoutComponent } from './layout/layout.component';
 import { MaterialModule } from './material/material.module';
-import { AccountsComponent } from './accounts/accounts.component';
+import { AccountsComponent } from './accounts/accountList/accounts.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { AccountFormComponent } from './accounts/account-form/account-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ConfirmationDialogComponent } from './components/shared/confirmation-dialog/confirmation-dialog.component';
 
 const appRoutes: Routes = [
   { path: '', component: DashboardComponent },
   { path: 'accounts', component: AccountsComponent },
+  { path: 'accounts/new', component: AccountFormComponent },
+  { path: 'accounts/:accountName', component: AccountFormComponent },
   { path: 'categories', component: CategoriesComponent },
 ];
 
@@ -25,7 +30,9 @@ const appRoutes: Routes = [
     LayoutComponent,
     AccountsComponent,
     CategoriesComponent,
-    DashboardComponent
+    DashboardComponent,
+    AccountFormComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -34,9 +41,10 @@ const appRoutes: Routes = [
     MaterialModule,
     RouterModule.forRoot(
       appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
+      { enableTracing: true }, // <-- debugging purposes only
     ),
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

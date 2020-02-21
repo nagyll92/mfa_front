@@ -8,7 +8,7 @@ interface CustomHttpResponse {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AccountsService {
   constructor(private http: HttpClient) {
@@ -21,12 +21,33 @@ export class AccountsService {
       }
       return null;
     }));
-    /*return this.http.get('/api/accounts').toPromise().then(result => {
-      console.log('results', result);
-      return result;
-    }).catch(reason => {
-      console.log('reason', reason);
-      return reason;
-    });*/
   }
+
+  public getAccount(accountName: string) {
+    return this.http.get('api/accounts/' + accountName).pipe(map((response: CustomHttpResponse) => {
+      if (response.success) {
+        return response.data;
+      }
+      return null;
+    }));
+  }
+
+  public updateAccount(accountName: string, account) {
+    return this.http.put('api/accounts/' + accountName, account).pipe(map((response: CustomHttpResponse) => {
+      return response;
+    })).toPromise();
+  }
+
+  public createAccount(account) {
+    return this.http.post('/api/accounts', account).pipe(map((response: CustomHttpResponse) => {
+      return response;
+    })).toPromise();
+  }
+
+  public removeAccount(accountName: string) {
+    return this.http.delete('/api/accounts/' + accountName).pipe(map((response: CustomHttpResponse) => {
+      return response.success;
+    }));
+  }
+
 }
