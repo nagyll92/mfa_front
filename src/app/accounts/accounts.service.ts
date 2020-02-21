@@ -11,11 +11,13 @@ interface CustomHttpResponse {
   providedIn: 'root',
 })
 export class AccountsService {
+  private basePath = '/api/accounts';
+
   constructor(private http: HttpClient) {
   }
 
   public getAccounts() {
-    return this.http.get('/api/accounts').pipe(map((response: CustomHttpResponse) => {
+    return this.http.get(this.basePath).pipe(map((response: CustomHttpResponse) => {
       if (response.success) {
         return response.data;
       }
@@ -24,7 +26,7 @@ export class AccountsService {
   }
 
   public getAccount(accountName: string) {
-    return this.http.get('api/accounts/' + accountName).pipe(map((response: CustomHttpResponse) => {
+    return this.http.get(this.basePath + '/' + accountName).pipe(map((response: CustomHttpResponse) => {
       if (response.success) {
         return response.data;
       }
@@ -33,19 +35,19 @@ export class AccountsService {
   }
 
   public updateAccount(accountName: string, account) {
-    return this.http.put('api/accounts/' + accountName, account).pipe(map((response: CustomHttpResponse) => {
+    return this.http.put(this.basePath + '/' + accountName, account).pipe(map((response: CustomHttpResponse) => {
       return response;
     })).toPromise();
   }
 
   public createAccount(account) {
-    return this.http.post('/api/accounts', account).pipe(map((response: CustomHttpResponse) => {
+    return this.http.post(this.basePath, account).pipe(map((response: CustomHttpResponse) => {
       return response;
     })).toPromise();
   }
 
   public removeAccount(accountName: string) {
-    return this.http.delete('/api/accounts/' + accountName).pipe(map((response: CustomHttpResponse) => {
+    return this.http.delete(this.basePath + '/' + accountName).pipe(map((response: CustomHttpResponse) => {
       return response.success;
     }));
   }
