@@ -5,10 +5,10 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
-import { LayoutComponent } from './layout/layout.component';
+import { LayoutComponent } from './components/layout/layout.component';
 import { MaterialModule } from './material/material.module';
-import { AccountsComponent } from './accounts/accountList/accounts.component';
-import { CategoriesComponent } from './categories/categories.component';
+import { AccountsComponent } from './accounts/account-list/accounts.component';
+import { CategoriesComponent } from './categories/category-list/categories.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
@@ -32,7 +32,7 @@ const appRoutes: Routes = [
     CategoriesComponent,
     DashboardComponent,
     AccountFormComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,7 +47,7 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {
 }
