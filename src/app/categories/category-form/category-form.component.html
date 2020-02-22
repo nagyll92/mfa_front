@@ -1,0 +1,51 @@
+<h1 *ngIf="editedCategory === null">New Category</h1>
+<h1 *ngIf="editedCategory !== null">Category: {{editedCategory}} <button mat-raised-button class="button" type="none" (click)="onDeleteButtonClicked()">Delete</button>
+</h1>
+
+<form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Account Name</mat-label>
+    <input matInput placeholder="Name" formControlName="name" autocomplete="off">
+    <mat-error *ngIf="categoryForm.get('name').hasError('required')">
+      The category name is <strong>required</strong>
+    </mat-error>
+    <mat-error *ngIf="categoryForm.get('name').hasError('minlength')">
+      The name must contain at least <strong>2</strong> characters
+    </mat-error>
+  </mat-form-field>
+
+  <br>
+  <br>
+
+  <mat-form-field>
+    <mat-label>Type</mat-label>
+    <mat-select formControlName="type" (ngModelChange)="onCategoryChange()">
+      <mat-option *ngFor="let type of categoryTypes" [value]="type.type">
+        {{type.label}}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="categoryForm.get('type').hasError('required')">
+      The category type is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <br>
+  <br>
+  <mat-form-field>
+    <mat-label>Parent</mat-label>
+    <mat-select formControlName="parent">
+      <mat-option>--no parent--</mat-option>
+      <mat-option *ngFor="let category of selectableCategories | async" [value]="category.name">
+        {{category.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <br>
+  <br>
+  <button mat-raised-button color="primary" class="button" type="submit">Save</button>&nbsp;
+  <a mat-raised-button color="warn" class="button" routerLink="/categories">Cancel</a>&nbsp;
+
+</form>
+

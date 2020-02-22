@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoriesService } from '../categories.service';
-import { Observable } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-categories',
@@ -8,33 +8,22 @@ import { Observable } from 'rxjs';
   styleUrls: ['./categories.component.scss'],
 })
 export class CategoriesComponent implements OnInit {
-  categories;
+  incomeCategories;
+  expenseCategories;
+  isFormVisible = false;
 
-
-  constructor(private categoriesService: CategoriesService) {
+  constructor(private categoriesService: CategoriesService, private router: Router, private route: ActivatedRoute) {
   }
 
   ngOnInit() {
-    this.categories = this.categoriesService.getCategories().toPromise().then(categoryList => {
-      return this.parseCategories(categoryList, null);
+    this.route.url.subscribe((routDetails) => {
+      this.isFormVisible = this.route.children.length === 1;
+      this.incomeCategories = this.categoriesService.getCategories('INCOME', true);
+      this.expenseCategories = this.categoriesService.getCategories('EXPENSE', true);
     });
   }
 
-  private parseCategories(inputArray, parent) {
-    const output = [];
-    for (const item of inputArray) {
-      if (item.parent === parent) {
-        const children = this.parseCategories(inputArray.filter(cat => cat.name !== item.name), item.name);
-        if (children.length) {
-          item.children = children;
-        }
-        output.push(item);
-      }
-    }
-    return output;
-  }
-
-  onItemClicked(item) {
-    console.log('item clicked', item);
-  }
+  onItemClicked = async (item) => {
+    await this.router.navigate(['/categories/category', item.name]);
+  };
 }

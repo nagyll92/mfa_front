@@ -1,6 +1,25 @@
 <h1>Categories</h1>
 
-<div class="categoriesTableContainer">
+<div class="categoriesContainer">
+  <div><a mat-raised-button color="primary" routerLink="/categories/new">+</a> &nbsp;</div>
 
-  <app-expandable-list [listItems]="categories | async" [displayValue]="'name'" [onItemClicked]="onItemClicked"></app-expandable-list>
+  <div>
+    <mat-card class="mat-elevation-z3 categories-holder">
+      <mat-card-title>Income</mat-card-title>
+      <app-expandable-list [listItems]="incomeCategories | async" [displayValue]="'name'"
+                           [onItemClicked]="onItemClicked"></app-expandable-list>
+
+    </mat-card>
+
+    <mat-card class="mat-elevation-z3 categories-holder">
+      <mat-card-title>Expense</mat-card-title>
+      <app-expandable-list [listItems]="expenseCategories | async" [displayValue]="'name'"
+                           [onItemClicked]="onItemClicked"></app-expandable-list>
+
+    </mat-card>
+
+  </div>
 </div>
+
+<app-side-child [isChildVisible]="isFormVisible"></app-side-child>
+

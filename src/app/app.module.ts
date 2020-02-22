@@ -18,19 +18,23 @@ import { ConfirmationDialogComponent } from './components/shared/confirmation-di
 import { TransferComponent } from './accounts/transfer/transfer.component';
 import { SideChildComponent } from './components/shared/side-child/side-child.component';
 import { ExpandableListComponent } from './components/shared/expandable-list/expandable-list.component';
+import { CategoryFormComponent } from './categories/category-form/category-form.component';
 
 const appRoutes: Routes = [
   { path: '', component: DashboardComponent },
   {
-    path: 'accounts', component: AccountsComponent,  children: [
+    path: 'accounts', component: AccountsComponent, children: [
       { path: 'new', component: AccountFormComponent },
       { path: 'transfer', component: TransferComponent },
-      { path: 'account/:accountName', component: AccountFormComponent},
+      { path: 'account/:accountName', component: AccountFormComponent },
     ],
   },
-  /*{ path: 'accounts/new', component: AccountsComponent },
-  { path: 'accounts/:accountName', component: AccountsComponent },*/
-  { path: 'categories', component: CategoriesComponent },
+  {
+    path: 'categories', component: CategoriesComponent, children: [
+      { path: 'new', component: CategoryFormComponent },
+      { path: 'category/:categoryName', component: CategoryFormComponent },
+    ],
+  },
 ];
 
 @NgModule({
@@ -45,6 +49,7 @@ const appRoutes: Routes = [
     TransferComponent,
     SideChildComponent,
     ExpandableListComponent,
+    CategoryFormComponent,
   ],
   imports: [
     BrowserModule,

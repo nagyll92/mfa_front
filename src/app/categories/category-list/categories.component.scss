@@ -1,7 +1,7 @@
-.categoriesTableContainer {
-  width: 100%;
-
-  .categoriesTable {
-    width: 100%;
+.categoriesContainer {
+  .categories-holder {
+    float: left;
+    margin-right: 10px;
+    width: calc(50% - 45px);
   }
 }
