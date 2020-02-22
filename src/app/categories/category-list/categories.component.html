@@ -3,20 +3,23 @@
 <div class="categoriesContainer">
   <div><a mat-raised-button color="primary" routerLink="/categories/new">+</a> &nbsp;</div>
 
-  <div>
-    <mat-card class="mat-elevation-z3 categories-holder">
-      <mat-card-title>Income</mat-card-title>
-      <app-expandable-list [listItems]="incomeCategories | async" [displayValue]="'name'"
-                           [onItemClicked]="onItemClicked"></app-expandable-list>
+  <div class="pure-g">
+    <div class="pure-u-1-2">
+      <mat-card class="mat-elevation-z3 categories-holder">
+        <mat-card-title>Income</mat-card-title>
+        <app-expandable-list [listItems]="incomeCategories | async" [displayValue]="'name'"
+                             [onItemClicked]="onItemClicked"></app-expandable-list>
 
-    </mat-card>
+      </mat-card>
+    </div>
 
-    <mat-card class="mat-elevation-z3 categories-holder">
-      <mat-card-title>Expense</mat-card-title>
-      <app-expandable-list [listItems]="expenseCategories | async" [displayValue]="'name'"
-                           [onItemClicked]="onItemClicked"></app-expandable-list>
-
-    </mat-card>
+    <div class="pure-u-1-2">
+      <mat-card class="mat-elevation-z3 categories-holder">
+        <mat-card-title>Expense</mat-card-title>
+        <app-expandable-list [listItems]="expenseCategories | async" [displayValue]="'name'"
+                             [onItemClicked]="onItemClicked"></app-expandable-list>
+      </mat-card>
+    </div>
 
   </div>
 </div>

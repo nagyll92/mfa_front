@@ -1,0 +1,67 @@
+<h1 *ngIf="type==='EXPENSE'">New Expense</h1>
+<h1 *ngIf="type==='INCOME'">New Income</h1>
+
+<form [formGroup]="transactionFrom" (ngSubmit)="onSubmit()">
+  <mat-form-field class="example-full-width">
+    <mat-label>Amount</mat-label>
+    <input matInput placeholder="Amount" type="number" step="0.01" formControlName="amount" autocomplete="off">
+    <mat-error *ngIf="transactionFrom.get('amount').hasError('required')">
+      The amount is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <br>
+  <br>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Description</mat-label>
+    <input matInput placeholder="Description" type="text" formControlName="description">
+  </mat-form-field>
+
+  <br>
+  <br>
+
+  <mat-form-field>
+    <mat-label>Account</mat-label>
+    <mat-select formControlName="account">
+      <mat-option *ngFor="let account of accounts | async" [value]="account.name">
+        {{account.name}}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="transactionFrom.get('account').hasError('required')">
+      The account is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <br>
+  <br>
+
+  <mat-form-field>
+    <mat-label>Category</mat-label>
+    <mat-select formControlName="category">
+      <mat-option *ngFor="let category of categories | async" [value]="category.name">
+        {{category.name}}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="transactionFrom.get('category').hasError('required')">
+      The category is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <br>
+  <br>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Date</mat-label>
+    <input matInput placeholder="Date" type="date" formControlName="dateTime">
+    <mat-error *ngIf="transactionFrom.get('dateTime').hasError('required')">
+      The date is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <br>
+  <br>
+
+  <button mat-raised-button color="primary" class="button" type="submit">Save</button>
+  <a mat-raised-button color="warn" class="button" routerLink="/dashboard">Cancel</a>
+</form>

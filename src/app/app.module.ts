@@ -19,9 +19,19 @@ import { TransferComponent } from './accounts/transfer/transfer.component';
 import { SideChildComponent } from './components/shared/side-child/side-child.component';
 import { ExpandableListComponent } from './components/shared/expandable-list/expandable-list.component';
 import { CategoryFormComponent } from './categories/category-form/category-form.component';
+import { TransactionFormComponent } from './transactions/transaction-form/transaction-form.component';
 
 const appRoutes: Routes = [
-  { path: '', component: DashboardComponent },
+  {
+    path: 'dashboard', component: DashboardComponent, children: [
+      {
+        path: 'transaction', children: [
+          { path: 'income', component: TransactionFormComponent },
+          { path: 'expense', component: TransactionFormComponent },
+        ],
+      },
+    ],
+  },
   {
     path: 'accounts', component: AccountsComponent, children: [
       { path: 'new', component: AccountFormComponent },
@@ -35,6 +45,8 @@ const appRoutes: Routes = [
       { path: 'category/:categoryName', component: CategoryFormComponent },
     ],
   },
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+
 ];
 
 @NgModule({
@@ -50,6 +62,7 @@ const appRoutes: Routes = [
     SideChildComponent,
     ExpandableListComponent,
     CategoryFormComponent,
+    TransactionFormComponent,
   ],
   imports: [
     BrowserModule,
