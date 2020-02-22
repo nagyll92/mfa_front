@@ -17,6 +17,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ConfirmationDialogComponent } from './components/shared/confirmation-dialog/confirmation-dialog.component';
 import { TransferComponent } from './accounts/transfer/transfer.component';
 import { SideChildComponent } from './components/shared/side-child/side-child.component';
+import { ExpandableListComponent } from './components/shared/expandable-list/expandable-list.component';
 
 const appRoutes: Routes = [
   { path: '', component: DashboardComponent },
@@ -43,6 +44,7 @@ const appRoutes: Routes = [
     ConfirmationDialogComponent,
     TransferComponent,
     SideChildComponent,
+    ExpandableListComponent,
   ],
   imports: [
     BrowserModule,

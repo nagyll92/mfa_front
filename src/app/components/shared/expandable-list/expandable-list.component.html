@@ -1,0 +1,22 @@
+<ul class="expandable-list" *ngIf="listItems">
+  <li *ngFor="let item of listItems">
+    <p>
+      <span *ngIf="!item.expanded && item.children" (click)="onItemExpanded(item)">
+        <mat-icon svgIcon="keyboard-arrow-down" aria-hidden="false" aria-label="Expand sub-categories"></mat-icon>
+      </span>
+      <span *ngIf="item.expanded && item.children" (click)="onItemCollapsed(item)">
+        <mat-icon svgIcon="keyboard-arrow-up" aria-hidden="false" aria-label="Collapse sub-categories"></mat-icon>
+      </span>
+      <span *ngIf="!item.children" class="placeholder"></span>
+      <span class="item-label" (click)="onItemClicked(item)">{{item[displayValue]}}
+        <mat-icon svgIcon="build" aria-hidden="false" aria-label="Configure category"></mat-icon>
+      </span>
+    </p>
+    <div class="child-wrapper" [@openChild]="item.expanded? 'visible': 'hidden'">
+      <app-expandable-list
+        [listItems]="item.children"
+        [onItemClicked]="onItemClicked"
+        [displayValue]="displayValue"></app-expandable-list>
+    </div>
+  </li>
+</ul>
