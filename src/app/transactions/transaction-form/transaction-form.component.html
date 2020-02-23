@@ -1,5 +1,11 @@
-<h1 *ngIf="type==='EXPENSE'">New Expense</h1>
-<h1 *ngIf="type==='INCOME'">New Income</h1>
+<h1 *ngIf="type==='EXPENSE'">
+  <span *ngIf="editedTransaction === null">New</span><span *ngIf="editedTransaction!== null">Edit</span> Expense
+  <button *ngIf="editedTransaction!==null" mat-raised-button class="button" type="none" (click)="onDeleteButtonClicked()">Delete</button>
+</h1>
+<h1 *ngIf="type==='INCOME'">
+  <span *ngIf="editedTransaction === null">New</span><span *ngIf="editedTransaction!== null">Edit</span> Income
+  <button *ngIf="editedTransaction!==null" mat-raised-button class="button" type="none" (click)="onDeleteButtonClicked()">Delete</button>
+</h1>
 
 <form [formGroup]="transactionFrom" (ngSubmit)="onSubmit()">
   <mat-form-field class="example-full-width">

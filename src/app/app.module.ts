@@ -28,6 +28,7 @@ const appRoutes: Routes = [
         path: 'transaction', children: [
           { path: 'income', component: TransactionFormComponent },
           { path: 'expense', component: TransactionFormComponent },
+          { path: 'edit/:transactionId', component: TransactionFormComponent },
         ],
       },
     ],
@@ -36,13 +37,13 @@ const appRoutes: Routes = [
     path: 'accounts', component: AccountsComponent, children: [
       { path: 'new', component: AccountFormComponent },
       { path: 'transfer', component: TransferComponent },
-      { path: 'account/:accountName', component: AccountFormComponent },
+      { path: 'edit/:accountName', component: AccountFormComponent },
     ],
   },
   {
     path: 'categories', component: CategoriesComponent, children: [
       { path: 'new', component: CategoryFormComponent },
-      { path: 'category/:categoryName', component: CategoryFormComponent },
+      { path: 'edit/:categoryName', component: CategoryFormComponent },
     ],
   },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },

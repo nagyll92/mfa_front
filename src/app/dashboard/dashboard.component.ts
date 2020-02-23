@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { TransactionsService } from '../transactions.service';
 
 @Component({
@@ -15,6 +15,7 @@ export class DashboardComponent implements OnInit {
   constructor(
     private transactionService: TransactionsService,
     private route: ActivatedRoute,
+    private router: Router,
   ) {
   }
 
@@ -23,6 +24,10 @@ export class DashboardComponent implements OnInit {
       this.isChildVisible = this.route.children.length === 1;
       this.transactions = this.transactionService.getTransactions();
     });
+  }
+
+  async onTransactionSelected(transaction) {
+    await this.router.navigate(['/dashboard/transaction/edit', transaction.id]);
   }
 
 }

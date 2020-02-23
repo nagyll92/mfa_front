@@ -16,10 +16,31 @@ export class TransactionsService {
   constructor(private http: HttpClient) {
   }
 
-  public createTransaction(transaction){
+  public deleteTransaction(id: number) {
+    return this.http.delete(this.basePath + '/' + id).pipe(map((response: CustomHttpResponse) => {
+      return response;
+    })).toPromise();
+  }
+
+  public updateTransaction(id: number, transaction) {
+    return this.http.put(this.basePath + '/' + id, transaction).pipe(map((response: CustomHttpResponse) => {
+      return response;
+    })).toPromise();
+  }
+
+  public createTransaction(transaction) {
     return this.http.post(this.basePath, transaction).pipe(map((response: CustomHttpResponse) => {
       return response;
     })).toPromise();
+  }
+
+  public getTransaction(id) {
+    return this.http.get(this.basePath + '/' + id).pipe(map((response: CustomHttpResponse) => {
+      if (response.success) {
+        return response.data;
+      }
+      return null;
+    }));
   }
 
   public getTransactions() {

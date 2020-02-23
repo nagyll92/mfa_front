@@ -24,6 +24,6 @@ export class CategoriesComponent implements OnInit {
   }
 
   onItemClicked = async (item) => {
-    await this.router.navigate(['/categories/category', item.name]);
+    await this.router.navigate(['/categories/edit', item.name]);
   };
 }
