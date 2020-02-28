@@ -23,7 +23,7 @@ import { TransactionFormComponent } from './transactions/transaction-form/transa
 
 const appRoutes: Routes = [
   {
-    path: 'dashboard', component: DashboardComponent, children: [
+    path: 'dashboard', data: { title: 'Dashboard' }, component: DashboardComponent, children: [
       {
         path: 'transaction', children: [
           { path: 'income', component: TransactionFormComponent },
@@ -34,14 +34,14 @@ const appRoutes: Routes = [
     ],
   },
   {
-    path: 'accounts', component: AccountsComponent, children: [
+    path: 'accounts', data: { title: 'Accounts' }, component: AccountsComponent, children: [
       { path: 'new', component: AccountFormComponent },
       { path: 'transfer', component: TransferComponent },
       { path: 'edit/:accountName', component: AccountFormComponent },
     ],
   },
   {
-    path: 'categories', component: CategoriesComponent, children: [
+    path: 'categories', data: { title: 'Categories' }, component: CategoriesComponent, children: [
       { path: 'new', component: CategoryFormComponent },
       { path: 'edit/:categoryName', component: CategoryFormComponent },
     ],
