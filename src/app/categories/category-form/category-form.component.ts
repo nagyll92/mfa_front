@@ -5,6 +5,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ConfirmationDialogComponent } from '../../components/shared/confirmation-dialog/confirmation-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { IconsService } from '../../icons.service';
+import { IconChooserComponent } from './icon-chooser/icon-chooser.component';
 
 @Component({
   selector: 'app-category-form',
@@ -17,7 +18,8 @@ export class CategoryFormComponent implements OnInit {
   categoryForm: FormGroup;
   categoryTypes = [{ label: 'Income', type: 'INCOME' }, { label: 'Expense', type: 'EXPENSE' }];
   selectableCategories;
-  icons = [{ icon: 'build', label: 'build' }, { icon: 'edit', label: 'edit' }, { icon: 'bills', label: 'bills' }];
+  icons = [];
+  selectedIcon: string = null;
 
   constructor(
     private categoriesService: CategoriesService,
@@ -25,7 +27,7 @@ export class CategoryFormComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     public dialog: MatDialog) {
-    this.icons = iconsService.categoryIcons.map(icon => ({ label: icon, icon }));
+    this.icons = iconsService.categoryIcons;
   }
 
   onDeleteButtonClicked() {
@@ -47,10 +49,12 @@ export class CategoryFormComponent implements OnInit {
   async onSubmit() {
     if (this.categoryForm.valid) {
       let operationResult;
+      const payload = this.categoryForm.value;
+      payload.icon = this.selectedIcon;
       if (this.editedCategory === null) {
-        operationResult = await this.categoriesService.createCategory(this.categoryForm.value);
+        operationResult = await this.categoriesService.createCategory(payload);
       } else {
-        operationResult = await this.categoriesService.updateCategory(this.editedCategory, this.categoryForm.value);
+        operationResult = await this.categoriesService.updateCategory(this.editedCategory, payload);
       }
       await this.onSubmitFinished(operationResult);
     }
@@ -70,6 +74,20 @@ export class CategoryFormComponent implements OnInit {
     return item.name !== this.editedCategory && item.type === this.categoryForm.value.type;
   };
 
+  selectIcon(event) {
+    event.preventDefault();
+    const categoryIcons = this.icons;
+    const dialogRef = this.dialog.open(IconChooserComponent, {
+      width: '500px',
+      data: { icons: categoryIcons, selectedIcon: this.selectedIcon },
+    });
+    dialogRef.afterClosed().subscribe(confirmed => {
+      if (confirmed) {
+        this.selectedIcon = confirmed;
+      }
+    });
+  }
+
   ngOnInit(): void {
     this.route.paramMap.subscribe((routDetails) => {
       const categoryName = routDetails.get('categoryName');
@@ -82,8 +100,8 @@ export class CategoryFormComponent implements OnInit {
             name: category.name,
             type: category.type,
             parent: category.parent,
-            icon: category.icon,
           });
+          this.selectedIcon = category.icon;
         });
       } else {
         this.getCategories();
@@ -109,7 +127,6 @@ export class CategoryFormComponent implements OnInit {
       name: new FormControl('', [Validators.required, Validators.minLength(2)]),
       type: new FormControl(null, [Validators.required]),
       parent: new FormControl(null),
-      icon: new FormControl(null),
     });
   }
 }

@@ -1,0 +1,42 @@
+.icon-chooser-list {
+  height: 160px;
+  .icon-button {
+    display: inline-block;
+    margin: 5px;
+
+    button {
+      height: 50px !important;
+      width: 50px !important;
+
+      .mat-icon {
+        height: 35px !important;
+        width: 35px !important;
+      }
+    }
+  }
+  margin-bottom: 12px;
+}
+
+.icon-chooser-list::-webkit-scrollbar {
+  width: 7px;
+  height: 0;
+}
+
+.icon-chooser-list::-webkit-scrollbar-track {
+  margin: 4px 5px 3px
+}
+
+.icon-chooser-list::-webkit-scrollbar-thumb {
+  margin-right: 5px;
+  background: rgba(0, 0, 0, 0.0);
+  border-radius: 10px;
+  box-shadow: #2c2c2c 0 0 0 1px;
+}
+
+.icon-chooser-list:hover::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.45)
+}
+
+.icon-chooser-list::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.55)
+}

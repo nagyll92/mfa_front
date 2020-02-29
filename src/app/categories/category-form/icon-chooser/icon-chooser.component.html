@@ -1,0 +1,25 @@
+<div mat-dialog-title>
+  Choose Icon
+  <mat-form-field class="example-full-width">
+    <mat-label>Search</mat-label>
+    <input matInput placeholder="Name" (keyup)="searchChanged($event)" autocomplete="off">
+  </mat-form-field>
+</div>
+
+<div mat-dialog-content class="icon-chooser-list">
+  <div *ngFor="let icon of icons | filter: filter" class="icon-button"
+       (click)="onIconSelected(icon)">
+    <button mat-icon-button>
+      <mat-icon *ngIf="selectedIcon === icon" [svgIcon]="icon" color="accent"></mat-icon>
+      <mat-icon *ngIf="selectedIcon !== icon" [svgIcon]="icon" color="default"></mat-icon>
+    </button>
+  </div>
+</div>
+
+<mat-divider></mat-divider>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()" cdkFocusInitial>Cancel</button>
+  <button mat-button (click)="onUseClick()" color="accent" [disabled]="selectedIcon === null">Use
+  </button>
+</div>

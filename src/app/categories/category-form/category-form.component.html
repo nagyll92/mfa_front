@@ -35,18 +35,16 @@
 
   <br>
   <br>
-  <mat-form-field>
-    <mat-label>Icon</mat-label>
-    <mat-select formControlName="icon">
-      <mat-option>-</mat-option>
-      <mat-option *ngFor="let icon of icons" [value]="icon.icon">
-        <mat-icon [svgIcon]="icon.icon"></mat-icon> {{icon.label}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+  <p>
+    <span>Icon: <button mat-button color="accent" (click)="selectIcon($event)">choose</button></span>
 
-  <br>
-  <br>
+  </p>
+  <div class="icon-wrapper">
+    <span class="big-icon">
+      <mat-icon [svgIcon]="selectedIcon"></mat-icon>
+    </span>
+  </div>
+
   <mat-form-field>
     <mat-label>Parent</mat-label>
     <mat-select formControlName="parent">

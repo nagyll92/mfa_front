@@ -21,6 +21,8 @@ import { ExpandableListComponent } from './components/shared/expandable-list/exp
 import { CategoryFormComponent } from './categories/category-form/category-form.component';
 import { TransactionFormComponent } from './transactions/transaction-form/transaction-form.component';
 import { httpInterceptorProviders } from './http-interceptors';
+import { IconChooserComponent } from './categories/category-form/icon-chooser/icon-chooser.component';
+import { FilterPipe } from './pipes/filter.pipe';
 
 const appRoutes: Routes = [
   {
@@ -65,6 +67,8 @@ const appRoutes: Routes = [
     ExpandableListComponent,
     CategoryFormComponent,
     TransactionFormComponent,
+    IconChooserComponent,
+    FilterPipe,
   ],
   imports: [
     BrowserModule,
