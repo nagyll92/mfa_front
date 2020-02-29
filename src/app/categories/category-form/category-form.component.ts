@@ -4,6 +4,7 @@ import { CategoriesService } from '../categories.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ConfirmationDialogComponent } from '../../components/shared/confirmation-dialog/confirmation-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { IconsService } from '../../icons.service';
 
 @Component({
   selector: 'app-category-form',
@@ -16,14 +17,15 @@ export class CategoryFormComponent implements OnInit {
   categoryForm: FormGroup;
   categoryTypes = [{ label: 'Income', type: 'INCOME' }, { label: 'Expense', type: 'EXPENSE' }];
   selectableCategories;
-  icons = [{ icon: 'build', label: 'build' }, { icon: 'edit', label: 'edit' }];
+  icons = [{ icon: 'build', label: 'build' }, { icon: 'edit', label: 'edit' }, { icon: 'bills', label: 'bills' }];
 
   constructor(
     private categoriesService: CategoriesService,
+    private iconsService: IconsService,
     private router: Router,
     private route: ActivatedRoute,
     public dialog: MatDialog) {
-    this.icons = [...this.icons, ...this.icons, ...this.icons, ...this.icons, ...this.icons, ...this.icons];
+    this.icons = iconsService.categoryIcons.map(icon => ({ label: icon, icon }));
   }
 
   onDeleteButtonClicked() {

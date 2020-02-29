@@ -40,7 +40,7 @@
     <mat-select formControlName="icon">
       <mat-option>-</mat-option>
       <mat-option *ngFor="let icon of icons" [value]="icon.icon">
-        <mat-icon [svgIcon]="icon.icon"></mat-icon>
+        <mat-icon [svgIcon]="icon.icon"></mat-icon> {{icon.label}}
       </mat-option>
     </mat-select>
   </mat-form-field>
