@@ -20,6 +20,7 @@ import { SideChildComponent } from './components/shared/side-child/side-child.co
 import { ExpandableListComponent } from './components/shared/expandable-list/expandable-list.component';
 import { CategoryFormComponent } from './categories/category-form/category-form.component';
 import { TransactionFormComponent } from './transactions/transaction-form/transaction-form.component';
+import { httpInterceptorProviders } from './http-interceptors';
 
 const appRoutes: Routes = [
   {
@@ -78,7 +79,7 @@ const appRoutes: Routes = [
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent],
 })
 export class AppModule {
