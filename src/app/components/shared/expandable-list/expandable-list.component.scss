@@ -7,4 +7,16 @@
   .child-wrapper {
     overflow: hidden;
   }
+
+  .main-category-item {
+    .edit-button {
+      display: none;
+    }
+  }
+
+  .main-category-item:hover {
+    .edit-button {
+      display: initial;
+    }
+  }
 }

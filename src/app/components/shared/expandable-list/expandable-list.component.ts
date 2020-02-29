@@ -22,11 +22,24 @@ export class ExpandableListComponent implements OnInit {
   @Input() listItems;
   @Input() displayValue;
   @Input() onItemClicked: (x) => void;
+  @Input() onEditClicked: (x) => void;
 
   constructor() {
   }
 
   ngOnInit(): void {
+  }
+
+  _itemEditClicked(x: any): void {
+    if (typeof this.onEditClicked !== 'undefined') {
+      this.onEditClicked(x);
+    }
+  }
+
+  _onItemClicked(x: any): void {
+    if (typeof this.onItemClicked !== 'undefined') {
+      this.onItemClicked(x);
+    }
   }
 
   onItemExpanded(item) {
@@ -38,6 +51,6 @@ export class ExpandableListComponent implements OnInit {
   }
 
   panStarted($event) {
-    console.log('pan started',$event);
+    //console.log('pan started',$event);
   }
 }
