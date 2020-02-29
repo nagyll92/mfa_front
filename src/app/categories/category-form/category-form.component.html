@@ -1,5 +1,8 @@
 <h1 *ngIf="editedCategory === null">New Category</h1>
-<h1 *ngIf="editedCategory !== null">Category: {{editedCategory}} <button mat-raised-button class="button" type="none" (click)="onDeleteButtonClicked()">Delete</button>
+<h1 *ngIf="editedCategory !== null">Category: {{editedCategory}}
+  <button mat-icon-button color="warn" class="button pull-right" type="none" (click)="onDeleteButtonClicked()">
+    <mat-icon svgIcon="delete" aria-hidden="false" aria-label="Edit Category"></mat-icon>
+  </button>
 </h1>
 
 <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
@@ -28,6 +31,18 @@
     <mat-error *ngIf="categoryForm.get('type').hasError('required')">
       The category type is <strong>required</strong>
     </mat-error>
+  </mat-form-field>
+
+  <br>
+  <br>
+  <mat-form-field>
+    <mat-label>Icon</mat-label>
+    <mat-select formControlName="icon">
+      <mat-option>-</mat-option>
+      <mat-option *ngFor="let icon of icons" [value]="icon.icon">
+        <mat-icon [svgIcon]="icon.icon"></mat-icon>
+      </mat-option>
+    </mat-select>
   </mat-form-field>
 
   <br>

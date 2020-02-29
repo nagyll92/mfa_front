@@ -1,19 +1,23 @@
 <div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
-  <mat-toolbar color="primary" class="example-toolbar">
-    <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
-    <h1 class="headerTitle" routerLink="/">Finance App</h1>
+  <div class="header-wrapper">
+    <mat-toolbar color="default" class="example-toolbar">
+      <button mat-icon-button (click)="snav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <h1 class="headerTitle" routerLink="/">Finance App</h1>
 
-  </mat-toolbar>
-  <mat-progress-bar *ngIf="!loading" mode="determinate" value="0" color="accent"></mat-progress-bar>
-  <mat-progress-bar *ngIf="loading" mode="indeterminate" color="warn"></mat-progress-bar>
+    </mat-toolbar>
+    <span *ngIf="!loading" style="display: inline-block; height: 4px;"></span>
+    <mat-progress-bar *ngIf="loading" mode="indeterminate" color="warn"></mat-progress-bar>
+  </div>
   <mat-sidenav-container class="example-sidenav-container"
                          [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
     <mat-sidenav [opened]="!mobileQuery.matches" #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
                  [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
       <mat-nav-list class="custom-nav-list">
-        <a mat-list-item  routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
-        <a mat-list-item  routerLink="/accounts" routerLinkActive="active">Accounts</a>
-        <a mat-list-item  routerLink="/categories" routerLinkActive="active">Categories</a>
+        <a mat-list-item routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+        <a mat-list-item routerLink="/accounts" routerLinkActive="active">Accounts</a>
+        <a mat-list-item routerLink="/categories" routerLinkActive="active">Categories</a>
       </mat-nav-list>
     </mat-sidenav>
 

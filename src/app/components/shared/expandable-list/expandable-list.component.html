@@ -1,6 +1,6 @@
 <mat-list class="expandable-list">
   <span *ngFor="let item of listItems">
-    <mat-list-item class="mat-list-option main-category-item" (panLeft)="panStarted($event)"
+    <mat-list-item class="mat-list-option list-item" (panLeft)="panStarted($event)"
                    (click)="_onItemClicked(item)">
       <mat-icon matListIcon>build</mat-icon>
       <h3 matLine> {{item[displayValue]}} </h3>
@@ -19,12 +19,15 @@
       <mat-divider></mat-divider>
     </mat-list-item>
     <div *ngIf="item.children" class="child-wrapper" [@openChild]="item.expanded? 'visible': 'hidden'">
-      <mat-list-item *ngFor="let child of item.children" class="mat-list-option">
-        <mat-icon matListIcon></mat-icon>
+      <mat-list-item *ngFor="let child of item.children" class="mat-list-option list-item">
+        <mat-icon matListIcon>build</mat-icon>
         <h3 matLine> {{child[displayValue]}} </h3>
         <p matLine *ngIf="child.secondLine">
           <span class="list-second-line"> {{child.secondLine}} </span>
         </p>
+        <span class="edit-button" (click)="_itemEditClicked(child)">
+          <mat-icon svgIcon="edit" aria-hidden="false" aria-label="Edit Category"></mat-icon>
+        </span>
         <mat-divider></mat-divider>
       </mat-list-item>
     </div>

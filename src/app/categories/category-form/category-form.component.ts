@@ -16,12 +16,14 @@ export class CategoryFormComponent implements OnInit {
   categoryForm: FormGroup;
   categoryTypes = [{ label: 'Income', type: 'INCOME' }, { label: 'Expense', type: 'EXPENSE' }];
   selectableCategories;
+  icons = [{ icon: 'build', label: 'build' }, { icon: 'edit', label: 'edit' }];
 
   constructor(
     private categoriesService: CategoriesService,
     private router: Router,
     private route: ActivatedRoute,
     public dialog: MatDialog) {
+    this.icons = [...this.icons, ...this.icons, ...this.icons, ...this.icons, ...this.icons, ...this.icons];
   }
 
   onDeleteButtonClicked() {
@@ -78,6 +80,7 @@ export class CategoryFormComponent implements OnInit {
             name: category.name,
             type: category.type,
             parent: category.parent,
+            icon: category.icon,
           });
         });
       } else {
@@ -104,6 +107,7 @@ export class CategoryFormComponent implements OnInit {
       name: new FormControl('', [Validators.required, Validators.minLength(2)]),
       type: new FormControl(null, [Validators.required]),
       parent: new FormControl(null),
+      icon: new FormControl(null),
     });
   }
 }

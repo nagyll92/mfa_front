@@ -8,13 +8,13 @@
     overflow: hidden;
   }
 
-  .main-category-item {
+  .list-item {
     .edit-button {
       display: none;
     }
   }
 
-  .main-category-item:hover {
+  .list-item:hover {
     .edit-button {
       display: initial;
     }
