@@ -3,20 +3,22 @@
     <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
     <h1 class="headerTitle" routerLink="/">Finance App</h1>
   </mat-toolbar>
-
   <mat-sidenav-container class="example-sidenav-container"
                          [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
     <mat-sidenav [opened]="!mobileQuery.matches" #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
                  [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
-      <mat-nav-list>
+      <mat-nav-list class="custom-nav-list">
         <a mat-list-item  routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
         <a mat-list-item  routerLink="/accounts" routerLinkActive="active">Accounts</a>
         <a mat-list-item  routerLink="/categories" routerLinkActive="active">Categories</a>
       </mat-nav-list>
     </mat-sidenav>
 
-    <mat-sidenav-content class="mainContentWrapper">
-      <router-outlet></router-outlet>
+    <mat-sidenav-content>
+      <mat-progress-bar mode="determinate" value="10" color="warn"></mat-progress-bar>
+      <div class="mainContentWrapper">
+        <router-outlet></router-outlet>
+      </div>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>

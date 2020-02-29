@@ -25,6 +25,8 @@ h1.headerTitle {
   /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
      causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
   flex: 1;
+
+
 }
 
 .example-is-mobile .example-sidenav-container {
@@ -40,4 +42,8 @@ h1.headerTitle {
 
 .mainContentWrapper {
   padding: 15px 10px;
+}
+
+.custom-nav-list {
+  min-width: 180px;
 }

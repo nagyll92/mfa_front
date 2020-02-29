@@ -8,10 +8,10 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
   animations: [
     trigger('openChild', [
       state('visible', style({
-        maxHeight: '100px',
+        height: '*',
       })),
       state('hidden', style({
-        maxHeight: '0px',
+        height: '0px',
       })),
       transition('hidden => visible', animate(300)),
       transition('visible => hidden', animate(300)),
@@ -35,5 +35,9 @@ export class ExpandableListComponent implements OnInit {
 
   onItemCollapsed(item) {
     item.expanded = false;
+  }
+
+  panStarted($event) {
+    console.log('pan started',$event);
   }
 }
