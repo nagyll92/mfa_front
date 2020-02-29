@@ -143,21 +143,21 @@ $mat-dark-theme-background: (
 // Theme Config
 
 body {
-  --primary-color: #1eb97d;
-  --primary-lighter-color: #bcead8;
-  --primary-darker-color: #12a260;
-  --text-primary-color: #{$dark-primary-text};
+  --primary-color: #22a773;
+  --primary-lighter-color: #bde5d5;
+  --primary-darker-color: #148c56;
+  --text-primary-color: #{$light-primary-text};
   --text-primary-lighter-color: #{$dark-primary-text};
   --text-primary-darker-color: #{$light-primary-text};
 }
 
 $mat-primary: (
-  main: #1eb97d,
-  lighter: #bcead8,
-  darker: #12a260,
-  200: #1eb97d, // For slide toggle,
+  main: #22a773,
+  lighter: #bde5d5,
+  darker: #148c56,
+  200: #22a773, // For slide toggle,
   contrast : (
-    main: $dark-primary-text,
+    main: $light-primary-text,
     lighter: $dark-primary-text,
     darker: $light-primary-text,
   )
@@ -256,4 +256,10 @@ $altTheme: mat-light-theme($theme-primary, $theme-accent, $theme-warn);
     height: 35px !important;
     width: 35px !important;
   }
+}
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
 }

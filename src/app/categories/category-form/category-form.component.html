@@ -1,8 +1,10 @@
 <h1 *ngIf="editedCategory === null">New Category</h1>
 <h1 *ngIf="editedCategory !== null">Category: {{editedCategory}}
-  <button mat-icon-button color="warn" class="button pull-right" type="none" (click)="onDeleteButtonClicked()">
-    <mat-icon svgIcon="delete" aria-hidden="false" aria-label="Edit Category"></mat-icon>
-  </button>
+  <span class="pull-right">
+    <button mat-mini-fab color="warn" class="button " type="none" (click)="onDeleteButtonClicked()">
+      <mat-icon svgIcon="delete" aria-hidden="false" aria-label="Edit Category"></mat-icon>
+    </button>
+  </span>
 </h1>
 
 <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
@@ -40,7 +42,7 @@
 
   </p>
   <div class="icon-wrapper">
-    <span class="big-icon">
+    <span class="big-icon" (click)="selectIcon($event)">
       <mat-icon [svgIcon]="selectedIcon"></mat-icon>
     </span>
   </div>
@@ -57,8 +59,10 @@
 
   <br>
   <br>
-  <button mat-raised-button color="primary" class="button" type="submit">Save</button>&nbsp;
-  <a mat-raised-button color="warn" class="button" routerLink="/categories">Cancel</a>&nbsp;
+  <button mat-raised-button color="primary" class="button" type="submit">
+    <mat-icon svgIcon="save-o"></mat-icon>Save</button>&nbsp;
+  <a mat-raised-button color="warn" class="button" routerLink="/categories">
+    <mat-icon svgIcon="cancel-o"></mat-icon>Cancel</a>&nbsp;
 
 </form>
 

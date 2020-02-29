@@ -71,7 +71,7 @@ export class CategoryFormComponent implements OnInit {
   };
 
   private filterParent = (item) => {
-    return item.name !== this.editedCategory && item.type === this.categoryForm.value.type;
+    return item.name !== this.editedCategory && item.type === this.categoryForm.value.type && item.parent === null;
   };
 
   selectIcon(event) {

@@ -68,7 +68,7 @@ const appRoutes: Routes = [
     CategoryFormComponent,
     TransactionFormComponent,
     IconChooserComponent,
-    FilterPipe,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
