@@ -23,6 +23,7 @@ import { TransactionFormComponent } from './transactions/transaction-form/transa
 import { httpInterceptorProviders } from './http-interceptors';
 import { IconChooserComponent } from './categories/category-form/icon-chooser/icon-chooser.component';
 import { FilterPipe } from './pipes/filter.pipe';
+import { CategryTransactionsComponent } from './categories/categry-transactions/categry-transactions.component';
 
 const appRoutes: Routes = [
   {
@@ -68,7 +69,8 @@ const appRoutes: Routes = [
     CategoryFormComponent,
     TransactionFormComponent,
     IconChooserComponent,
-    FilterPipe
+    FilterPipe,
+    CategryTransactionsComponent
   ],
   imports: [
     BrowserModule,

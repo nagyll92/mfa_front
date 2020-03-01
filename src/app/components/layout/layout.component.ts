@@ -1,6 +1,8 @@
 import { MediaMatcher } from '@angular/cdk/layout';
-import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { AppService } from '../../app.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { map } from 'rxjs/operators';
 
 /** @title Responsive sidenav */
 @Component({
@@ -8,12 +10,13 @@ import { AppService } from '../../app.service';
   templateUrl: 'layout.component.html',
   styleUrls: ['layout.component.scss'],
 })
-export class LayoutComponent implements OnDestroy {
+export class LayoutComponent implements OnDestroy, OnInit {
   mobileQuery: MediaQueryList;
   private readonly mobileQueryListener: () => void;
   loading = true;
+  pageTitle: string;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, appService: AppService) {
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, appService: AppService, private router: Router, private route: ActivatedRoute) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this.mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this.mobileQueryListener);
@@ -33,6 +36,32 @@ export class LayoutComponent implements OnDestroy {
         }, 0);
       }
     });
+  }
+
+  ngOnInit(): void {
+    this.router
+      .events
+      .pipe(
+        map(() => {
+          let route = this.route.firstChild;
+          let child = route;
+
+          while (child) {
+            if (child.firstChild) {
+              child = child.firstChild;
+              route = child;
+            } else {
+              child = null;
+            }
+          }
+          return route;
+        }),
+      )
+      .subscribe(route => {
+        if (route !== null) {
+          this.pageTitle = route.data['_value'].title;// tslint:disable-line
+        }
+      });
   }
 
   ngOnDestroy(): void {
