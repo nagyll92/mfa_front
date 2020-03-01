@@ -2,10 +2,11 @@
   <span *ngFor="let item of listItems">
     <mat-list-item class="mat-list-option list-item" (panLeft)="panStarted($event)"
                    (click)="_onItemClicked(item)">
+      <mat-divider></mat-divider>
       <mat-icon matListIcon [svgIcon]="item[iconValue]"></mat-icon>
       <h3 matLine> {{item[displayValue]}}</h3>
-      <p matLine *ngIf="item.secondLine">
-        <span class="list-second-line"> {{item.secondLine}} </span>
+      <p matLine *ngIf="secondLineValue">
+        <span class="list-second-line"> {{item[secondLineValue] | currency: 'RON '}} </span>
       </p>
       <span class="edit-button" (click)="_itemEditClicked(item)">
         <mat-icon svgIcon="edit" aria-hidden="false" aria-label="Edit Category"></mat-icon>
@@ -16,19 +17,17 @@
       <span *ngIf="item.expanded && item.children" (click)="onItemCollapsed(item)">
         <mat-icon svgIcon="keyboard-arrow-up" aria-hidden="false" aria-label="Collapse sub-categories"></mat-icon>
       </span>
-      <mat-divider></mat-divider>
     </mat-list-item>
     <div *ngIf="item.children" class="child-wrapper" [@openChild]="item.expanded? 'visible': 'hidden'">
       <mat-list-item *ngFor="let child of item.children" class="mat-list-option list-item">
         <mat-icon matListIcon [svgIcon]="child[iconValue]"></mat-icon>
         <h3 matLine> {{child[displayValue]}} </h3>
-        <p matLine *ngIf="child.secondLine">
-          <span class="list-second-line"> {{child.secondLine}} </span>
+        <p matLine *ngIf="secondLineValue">
+          <span class="list-second-line"> {{child[secondLineValue] | currency: 'RON '}} </span>
         </p>
         <span class="edit-button" (click)="_itemEditClicked(child)">
           <mat-icon svgIcon="edit" aria-hidden="false" aria-label="Edit Category"></mat-icon>
         </span>
-        <mat-divider></mat-divider>
       </mat-list-item>
     </div>
   </span>

@@ -21,6 +21,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 export class ExpandableListComponent implements OnInit {
   @Input() listItems;
   @Input() displayValue;
+  @Input() secondLineValue: string;
   @Input() iconValue;
   @Input() onItemClicked: (x) => void;
   @Input() onEditClicked: (x) => void;

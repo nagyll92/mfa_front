@@ -11,7 +11,7 @@
       <mat-card class="mat-elevation-z3 categories-holder">
         <mat-card-title>Income</mat-card-title>
         <app-expandable-list [listItems]="incomeCategories | async" [displayValue]="'name'" [iconValue]="'icon'"
-                             [onEditClicked]="onItemClicked"></app-expandable-list>
+                             [onEditClicked]="onItemClicked" secondLineValue="amount"></app-expandable-list>
 
       </mat-card>
     </div>
@@ -20,6 +20,7 @@
       <mat-card class="mat-elevation-z3 categories-holder">
         <mat-card-title>Expense</mat-card-title>
         <app-expandable-list [listItems]="expenseCategories | async" [displayValue]="'name'" [iconValue]="'icon'"
+                             secondLineValue="amount"
                              [onEditClicked]="onItemClicked"></app-expandable-list>
       </mat-card>
     </div>
